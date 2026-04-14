@@ -5,7 +5,7 @@ import ProductPageClient from '@/components/shop/ProductPageClient';
 // Static product data — will be replaced with Sanity fetch once CMS is configured
 const products: Record<string, {
   id: string; name: string; slug: string; category: string; tagline: string;
-  price: number; compareAtPrice?: number; subscriptionAnnual?: number;
+  price: number; compareAtPrice?: number; subscriptionAnnual: number;
   thatcham?: string; installType: string;
   specs: Array<{ key: string; value: string }>;
   features: string[];
