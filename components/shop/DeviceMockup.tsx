@@ -102,19 +102,6 @@ export default function DeviceMockup({ name, category, className = '' }: DeviceM
           </div>
       </div>
 
-      <style jsx>{`
-        .signal-pulse-ring {
-          position: absolute;
-          border: 1px solid var(--color-signal);
-          border-radius: 50%;
-          animation: pulseRing 4s cubic-bezier(0.21, 0.61, 0.35, 1) infinite;
-        }
-        @keyframes pulseRing {
-          0% { transform: scale(0.5); opacity: 0; }
-          50% { opacity: 0.2; }
-          100% { transform: scale(1.5); opacity: 0; }
-        }
-      `}</style>
     </div>
   );
 }
