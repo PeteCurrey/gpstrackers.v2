@@ -4,7 +4,7 @@ export interface CategoryContent {
   label: string;
   h1: string;
   sub: string;
-  features: Array<{ label: string; title: string; desc: string }>;
+  features: Array<{ label: string; value: string; title: string; desc: string }>;
   useCases: Array<{ title: string; desc: string }>;
   faqs: Array<{ question: string; answer: string }>;
 }
