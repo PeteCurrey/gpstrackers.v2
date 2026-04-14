@@ -104,26 +104,14 @@ export default function MobileNav({ open, onClose }: MobileNavProps) {
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.125rem' }}>
             {section.links.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                onClick={onClose}
-                className="font-display"
-                style={{
-                  fontSize: '28px',
-                  fontWeight: 700,
-                  color: 'var(--color-text)',
-                  textDecoration: 'none',
-                  padding: '0.25rem 0',
-                  letterSpacing: '-0.01em',
-                  lineHeight: 1.2,
-                  transition: 'color 0.15s',
-                }}
-                onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = 'var(--color-signal)')}
-                onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = 'var(--color-text)')}
-              >
-                {link.label}
-              </Link>
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={onClose}
+                  className="mobile-nav-link"
+                >
+                  {link.label}
+                </Link>
             ))}
           </div>
         </div>

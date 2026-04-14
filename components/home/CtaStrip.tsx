@@ -34,48 +34,13 @@ export default function CtaStrip() {
           <div style={{ display: 'flex', gap: '1rem', flexShrink: 0, flexWrap: 'wrap' }}>
             <Link
               href="/shop"
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                height: '48px',
-                padding: '0 1.5rem',
-                background: 'var(--color-void)',
-                color: 'var(--color-white)',
-                fontFamily: 'var(--font-body)',
-                fontSize: '15px',
-                borderRadius: '6px',
-                textDecoration: 'none',
-                whiteSpace: 'nowrap',
-                transition: 'background 0.2s',
-              }}
-              onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.background = '#0a0e12')}
-              onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.background = 'var(--color-void)')}
+              className="cta-strip-primary"
             >
               Shop Trackers
             </Link>
             <Link
               href="/find-my-tracker"
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                height: '48px',
-                padding: '0 1.5rem',
-                background: 'transparent',
-                color: 'var(--color-void)',
-                fontFamily: 'var(--font-body)',
-                fontSize: '15px',
-                borderRadius: '6px',
-                border: '1.5px solid var(--color-void)',
-                textDecoration: 'none',
-                whiteSpace: 'nowrap',
-                transition: 'background 0.2s',
-              }}
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLElement).style.background = 'rgba(7,11,15,0.1)';
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLElement).style.background = 'transparent';
-              }}
+              className="cta-strip-secondary"
             >
               Find My Tracker →
             </Link>

@@ -49,9 +49,7 @@ function FooterLink({ href, label }: { href: string; label: string }) {
   return (
     <Link
       href={href}
-      style={footerLinkStyle}
-      onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = 'var(--color-text)')}
-      onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = 'var(--color-muted)')}
+      className="footer-link"
     >
       {label}
     </Link>
@@ -160,13 +158,10 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   style={{
-                    color: 'var(--color-muted)',
-                    transition: 'color 0.2s',
                     display: 'flex',
                     alignItems: 'center',
                   }}
-                  onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = 'var(--color-signal)')}
-                  onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = 'var(--color-muted)')}
+                  className="social-link"
                 >
                   {s.icon}
                 </a>

@@ -154,27 +154,12 @@ export default function MainNav() {
                       key={link.href}
                       href={link.href}
                       onClick={() => setActiveDropdown(null)}
-                      style={{
-                        display: 'block',
-                        padding: '0.625rem 0.75rem',
-                        borderRadius: '6px',
-                        textDecoration: 'none',
-                        borderLeft: '2px solid transparent',
-                        transition: 'all 0.15s',
-                      }}
-                      onMouseEnter={(e) => {
-                        (e.currentTarget as HTMLElement).style.borderLeftColor = 'var(--color-signal)';
-                        (e.currentTarget as HTMLElement).style.background = 'rgba(14,165,233,0.06)';
-                      }}
-                      onMouseLeave={(e) => {
-                        (e.currentTarget as HTMLElement).style.borderLeftColor = 'transparent';
-                        (e.currentTarget as HTMLElement).style.background = 'transparent';
-                      }}
+                      className="nav-dropdown-item"
                     >
-                      <div style={{ fontSize: '14px', color: 'var(--color-text)', fontFamily: 'var(--font-body)' }}>
+                      <div className="nav-dropdown-title">
                         {link.label}
                       </div>
-                      <div style={{ fontSize: '12px', color: 'var(--color-muted)', fontFamily: 'var(--font-body)', marginTop: '1px' }}>
+                      <div className="nav-dropdown-desc">
                         {link.desc}
                       </div>
                     </Link>
@@ -235,27 +220,12 @@ export default function MainNav() {
                       key={link.href}
                       href={link.href}
                       onClick={() => setActiveDropdown(null)}
-                      style={{
-                        display: 'block',
-                        padding: '0.625rem 0.75rem',
-                        borderRadius: '6px',
-                        textDecoration: 'none',
-                        borderLeft: '2px solid transparent',
-                        transition: 'all 0.15s',
-                      }}
-                      onMouseEnter={(e) => {
-                        (e.currentTarget as HTMLElement).style.borderLeftColor = 'var(--color-signal)';
-                        (e.currentTarget as HTMLElement).style.background = 'rgba(14,165,233,0.06)';
-                      }}
-                      onMouseLeave={(e) => {
-                        (e.currentTarget as HTMLElement).style.borderLeftColor = 'transparent';
-                        (e.currentTarget as HTMLElement).style.background = 'transparent';
-                      }}
+                      className="nav-dropdown-item"
                     >
-                      <div style={{ fontSize: '14px', color: 'var(--color-text)', fontFamily: 'var(--font-body)' }}>
+                      <div className="nav-dropdown-title">
                         {link.label}
                       </div>
-                      <div style={{ fontSize: '12px', color: 'var(--color-muted)', fontFamily: 'var(--font-body)', marginTop: '1px' }}>
+                      <div className="nav-dropdown-desc">
                         {link.desc}
                       </div>
                     </Link>
@@ -272,17 +242,7 @@ export default function MainNav() {
               <Link
                 key={link.href}
                 href={link.href}
-                style={{
-                  color: 'var(--color-text)',
-                  fontFamily: 'var(--font-body)',
-                  fontSize: '14px',
-                  padding: '0.5rem 0.75rem',
-                  textDecoration: 'none',
-                  borderRadius: '6px',
-                  transition: 'color 0.2s',
-                }}
-                onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = 'var(--color-signal)')}
-                onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = 'var(--color-text)')}
+                className="nav-link"
               >
                 {link.label}
               </Link>

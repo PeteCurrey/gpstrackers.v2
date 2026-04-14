@@ -66,7 +66,7 @@ function GpsPin() {
 
 export default function ProductCategories() {
   const gridRef = useRef<HTMLDivElement>(null);
-  const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
+  const cardsRef = useRef<(HTMLAnchorElement | null)[]>([]);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -129,7 +129,7 @@ export default function ProductCategories() {
             <Link
               key={cat.href}
               href={cat.href}
-              ref={(el) => { cardsRef.current[i] = el as HTMLDivElement; }}
+              ref={(el) => { cardsRef.current[i] = el; }}
               style={{ textDecoration: 'none', opacity: 0 }}
             >
               <div

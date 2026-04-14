@@ -193,18 +193,7 @@ export default function Hero() {
                 </Link>
                 <Link
                   href="/find-my-tracker"
-                  style={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '0.35rem',
-                    color: 'var(--color-signal)',
-                    fontFamily: 'var(--font-body)',
-                    fontSize: '15px',
-                    textDecoration: 'none',
-                    transition: 'gap 0.2s',
-                  }}
-                  onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.gap = '0.6rem'; }}
-                  onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.gap = '0.35rem'; }}
+                  className="hero-secondary-link"
                 >
                   Find My Tracker →
                 </Link>
