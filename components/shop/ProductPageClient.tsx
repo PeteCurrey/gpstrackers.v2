@@ -14,13 +14,28 @@ interface Product {
   tagline: string;
   price: number;
   compareAtPrice?: number;
-  subscriptionAnnual?: number;
+  subscriptionAnnual: number; // Changed from optional to match usage
   thatcham?: string;
   installType: string;
   specs: Array<{ key: string; value: string }>;
   features: string[];
   faqs: Array<{ question: string; answer: string }>;
 }
+
+export default function ProductPageClient({ product }: { product: Product }) {
+  const [quantity, setQuantity] = useState(1);
+  const [includeSubscription, setIncludeSubscription] = useState(true);
+  const [activeTab, setActiveTab] = useState<'features' | 'subscription' | 'installation' | 'faq'>('features');
+  const addItem = useCartStore((state) => state.addItem);
+
+  const handleAddToCart = () => {
+    addItem({
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      quantity,
+    });
+  };
 
   const installInstructions = {
     self: {
@@ -63,7 +78,11 @@ interface Product {
         'Set your Geofence boundaries in the Travio Live app.'
       ]
     }
-  }[product.installType as 'self' | 'obd' | 'professional' | 'magnetic'] || { title: 'Standard Setup', desc: 'Simple setup instructions included in the box.', steps: ['Power on device', 'Scan QR code', 'Track live'] };
+  }[product.installType as 'self' | 'obd' | 'professional' | 'magnetic'] || { 
+    title: 'Standard Setup', 
+    desc: 'Simple setup instructions included in the box.', 
+    steps: ['Power on device', 'Scan QR code', 'Track live'] 
+  };
 
   return (
     <div className="bg-void min-h-screen pt-24 pb-20">

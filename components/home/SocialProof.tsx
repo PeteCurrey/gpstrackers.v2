@@ -1,3 +1,4 @@
+export default function SocialProof() {
   const logos = [
     'MT Electrical Services', 'East Midlands Logistics', 'Peak District Scaffolding',
     'Hardwick Plant Hire', 'County Groundworks', 'Swift Courier UK',
@@ -173,7 +174,7 @@
                     letterSpacing: '0.08em',
                     marginTop: '0.5rem',
                     padding: '2px 8px',
-                    border: '1px solid rgba(14,165,233,0.2)',
+                    border: '1px solid rgba(14, 165, 233, 0.2)',
                     borderRadius: '4px',
                     display: 'inline-block',
                   }}
