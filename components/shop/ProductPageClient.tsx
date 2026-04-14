@@ -34,6 +34,10 @@ export default function ProductPageClient({ product }: { product: Product }) {
       name: product.name,
       price: product.price,
       quantity,
+      includeSubscription,
+      slug: product.slug,
+      category: Array.isArray(product.category) ? product.category[0] : product.category,
+      subscriptionAnnual: product.subscriptionAnnual,
     });
   };
 
