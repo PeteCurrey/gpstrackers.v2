@@ -2,6 +2,7 @@
 import { useEffect, useRef } from 'react';
 import Link from 'next/link';
 import gsap from 'gsap';
+import CinematicMap from '../ui/CinematicMap';
 
 export default function Hero() {
   const labelRef = useRef<HTMLDivElement>(null);
@@ -66,11 +67,8 @@ export default function Hero() {
         paddingTop: '112px', /* 40px topbar + 72px nav */
       }}
     >
-      {/* Coordinate grid texture */}
-      <div
-        className="coord-grid"
-        style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }}
-      />
+      {/* Coded Cinematic Map Background */}
+      <CinematicMap />
 
       {/* Radial glow — bottom left */}
       <div

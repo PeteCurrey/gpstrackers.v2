@@ -10,7 +10,7 @@ const trackerLinks = [
   { label: 'Insurance Approved', href: '/trackers/insurance-approved', desc: 'Thatcham S5 & S7' },
   { label: 'Asset Trackers', href: '/trackers/asset-trackers', desc: '3-year battery life' },
   { label: 'Caravan & Motorhome', href: '/trackers/caravan-motorhome', desc: '4-year battery, concealed' },
-  { label: 'Personal & Pet', href: '/trackers/personal-pet', desc: 'Family & lone worker' },
+  { label: 'Plant & Machinery', href: '/trackers/plant-machinery', desc: 'Excavators & heavy equipment' },
 ];
 
 const fleetLinks = [

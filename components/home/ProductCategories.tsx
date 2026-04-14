@@ -43,20 +43,20 @@ const categories = [
     stat: '4-year battery life',
   },
   {
-    title: 'Personal & Pet',
-    href: '/trackers/personal-pet',
-    desc: 'Children, elderly, dogs. Live location. SOS alerts. Family app.',
-    price: 'From £45',
-    stat: 'SOS alert included',
+    title: 'Plant & Machinery',
+    href: '/trackers/plant-machinery',
+    desc: 'Excavators, telehandlers, dumpers, tractors, and agricultural machinery.',
+    price: 'From £105 · 3-year battery option',
+    stat: 'Up to 90-day battery. Covert fit.',
   },
 ];
 
-function GpsPin() {
+function GpsPin({ color = 'var(--color-signal)' }: { color?: string }) {
   return (
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
       <path
         d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"
-        fill="var(--color-signal)"
+        fill={color}
         fillOpacity="0.8"
       />
       <circle cx="12" cy="9" r="2.5" fill="rgba(7,11,15,0.7)" />
@@ -102,14 +102,14 @@ export default function ProductCategories() {
           <h2
             className="font-display"
             style={{
-              fontSize: 'clamp(2rem, 5vw, 3.375rem)',
+              fontSize: 'clamp(2.5rem, 5vw, 3.375rem)',
               fontWeight: 800,
               color: 'var(--color-white)',
               letterSpacing: '-0.02em',
               marginBottom: '0.75rem',
             }}
           >
-            Every Asset. Every Use Case.
+            Track Everything. Know Everything.
           </h2>
           <p style={{ fontFamily: 'var(--font-body)', fontWeight: 300, fontSize: '17px', color: 'var(--color-muted)' }}>
             Six tracker categories. One platform.
@@ -125,93 +125,104 @@ export default function ProductCategories() {
             gap: '1.25rem',
           }}
         >
-          {categories.map((cat, i) => (
-            <Link
-              key={cat.href}
-              href={cat.href}
-              ref={(el) => { cardsRef.current[i] = el; }}
-              style={{ textDecoration: 'none', opacity: 0 }}
-            >
-              <div
-                className="glass-card card-signal-top"
-                style={{ padding: '1.5rem', height: '100%', cursor: 'pointer' }}
+          {categories.map((cat, i) => {
+            const isPlant = cat.title === 'Plant & Machinery';
+            const catColor = isPlant ? 'var(--color-alert)' : 'var(--color-signal)';
+            const catBorder = isPlant ? 'rgba(245,158,11,0.25)' : 'rgba(14,165,233,0.25)';
+
+            return (
+              <Link
+                key={cat.href}
+                href={cat.href}
+                ref={(el) => { cardsRef.current[i] = el; }}
+                style={{ textDecoration: 'none', opacity: 0 }}
               >
-                {/* Icon */}
-                <div style={{ marginBottom: '1rem' }}>
-                  <GpsPin />
-                </div>
-
-                {/* Title */}
                 <div
-                  className="font-display"
-                  style={{
-                    fontSize: '22px',
-                    fontWeight: 700,
-                    color: 'var(--color-white)',
-                    marginBottom: '0.5rem',
-                    letterSpacing: '-0.01em',
+                  className="glass-card card-signal-top"
+                  style={{ 
+                    padding: '1.5rem', 
+                    height: '100%', 
+                    cursor: 'pointer',
+                    borderTop: `2px solid ${catColor}`
                   }}
                 >
-                  {cat.title}
-                </div>
+                  {/* Icon */}
+                  <div style={{ marginBottom: '1rem' }}>
+                    <GpsPin color={catColor} />
+                  </div>
 
-                {/* Stat badge */}
-                <div
-                  className="font-mono"
-                  style={{
-                    fontSize: '10px',
-                    letterSpacing: '0.1em',
-                    color: 'var(--color-signal)',
-                    textTransform: 'uppercase',
-                    marginBottom: '0.75rem',
-                  }}
-                >
-                  {cat.stat}
-                </div>
+                  {/* Title */}
+                  <div
+                    className="font-display"
+                    style={{
+                      fontSize: '22px',
+                      fontWeight: 700,
+                      color: 'var(--color-white)',
+                      marginBottom: '0.5rem',
+                      letterSpacing: '-0.01em',
+                    }}
+                  >
+                    {cat.title}
+                  </div>
 
-                {/* Desc */}
-                <p
-                  style={{
-                    fontFamily: 'var(--font-body)',
-                    fontWeight: 300,
-                    fontSize: '14px',
-                    color: 'var(--color-muted)',
-                    lineHeight: 1.65,
-                    marginBottom: '1rem',
-                  }}
-                >
-                  {cat.desc}
-                </p>
+                  {/* Stat badge */}
+                  <div
+                    className="font-mono"
+                    style={{
+                      fontSize: '10px',
+                      letterSpacing: '0.1em',
+                      color: catColor,
+                      textTransform: 'uppercase',
+                      marginBottom: '0.75rem',
+                    }}
+                  >
+                    {cat.stat}
+                  </div>
 
-                {/* Price */}
-                <div
-                  className="font-mono"
-                  style={{
-                    fontSize: '11px',
-                    color: 'var(--color-muted)',
-                    letterSpacing: '0.04em',
-                    marginBottom: '1rem',
-                  }}
-                >
-                  {cat.price}
-                </div>
+                  {/* Desc */}
+                  <p
+                    style={{
+                      fontFamily: 'var(--font-body)',
+                      fontWeight: 300,
+                      fontSize: '14px',
+                      color: 'var(--color-muted)',
+                      lineHeight: 1.65,
+                      marginBottom: '1rem',
+                    }}
+                  >
+                    {cat.desc}
+                  </p>
 
-                {/* Explore link */}
-                <div
-                  style={{
-                    color: 'var(--color-signal)',
-                    fontFamily: 'var(--font-body)',
-                    fontSize: '13px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '0.25rem',
-                  }}
-                >
-                  Explore →
+                  {/* Price */}
+                  <div
+                    className="font-mono"
+                    style={{
+                      fontSize: '11px',
+                      color: 'var(--color-muted)',
+                      letterSpacing: '0.04em',
+                      marginBottom: '1rem',
+                    }}
+                  >
+                    {cat.price}
+                  </div>
+
+                  {/* Explore link */}
+                  <div
+                    style={{
+                      color: catColor,
+                      fontFamily: 'var(--font-body)',
+                      fontSize: '13px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '0.25rem',
+                    }}
+                  >
+                    Explore →
+                  </div>
                 </div>
-              </div>
-            </Link>
-          ))}
+              </Link>
+            );
+          })}
         </div>
       </div>
     </section>

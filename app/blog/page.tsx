@@ -7,62 +7,7 @@ export const metadata: Metadata = {
   description: 'Expert advice on vehicle security, fleet optimization, and the latest in GPS tracking technology. Read our guides and industry news.',
 };
 
-const blogPosts = [
-  {
-    category: 'BUYING GUIDE',
-    title: 'OBD vs Hardwired GPS Trackers: Which Is Right for Your Vehicle?',
-    excerpt: 'We break down the key differences between plug-and-play OBD trackers and professionally hardwired devices — including when each makes sense.',
-    date: '12 Apr 2026',
-    readingTime: 6,
-    slug: 'obd-vs-hardwired-trackers',
-    image: '/blog/obd-vs-hardwired.jpg'
-  },
-  {
-    category: 'INSURANCE',
-    title: 'Thatcham S5 vs S7: What Your Insurer Actually Requires',
-    excerpt: 'Category S5 and S7 trackers both offer insurance approval, but they are very different products. Here is what you need to know before you buy.',
-    date: '8 Apr 2026',
-    readingTime: 5,
-    slug: 'thatcham-s5-vs-s7-guide',
-    image: '/blog/thatcham-guide.jpg'
-  },
-  {
-    category: 'FLEET',
-    title: 'How Driver Behaviour Scoring Cut Our Client\'s Fuel Bill by 22%',
-    excerpt: 'A real-world look at how a 24-vehicle Midlands logistics company used Travio\'s driver scoring to identify inefficiencies and change behaviour.',
-    date: '3 Apr 2026',
-    readingTime: 7,
-    slug: 'driver-behaviour-scoring-case-study',
-    image: '/blog/fuel-saving.jpg'
-  },
-  {
-    category: 'SECURITY',
-    title: 'Vehicle Theft Trends 2026: Why Factory Security Isn\'t Enough',
-    excerpt: 'Relay theft and signal jamming are on the rise. We look at the latest methods used by car thieves and how GPS tracking provides the ultimate fallback.',
-    date: '28 Mar 2026',
-    readingTime: 8,
-    slug: 'vehicle-theft-trends-2026',
-    image: '/blog/theft-trends.jpg'
-  },
-  {
-    category: 'PRODUCTIVITY',
-    title: 'The Hidden Cost of Paper Vehicle Logs',
-    excerpt: 'Manual logging is prone to error and consumes hours of administrative time. Discover how automated digital journey history pays for itself.',
-    date: '20 Mar 2026',
-    readingTime: 4,
-    slug: 'hidden-cost-of-paper-logs',
-    image: '/blog/paper-logs.jpg'
-  },
-  {
-    category: 'GUIDE',
-    title: 'Top 5 Locations to Conceal a GPS Tracker',
-    excerpt: 'Concealment is key to theft recovery. We provide a professional guide to the best hidden spots for hardwired and battery-powered trackers.',
-    date: '15 Mar 2026',
-    readingTime: 10,
-    slug: 'concealment-locations-guide',
-    image: '/blog/concealment.jpg'
-  }
-];
+import { blogPosts } from '@/lib/data/blog';
 
 export default function BlogPage() {
   return (
@@ -90,11 +35,11 @@ export default function BlogPage() {
                     <div className="flex-1 flex flex-col px-1">
                         <div className="flex items-center gap-4 mb-3">
                              <span className="font-mono text-[9px] text-signal uppercase tracking-widest">{post.category}</span>
-                             <span className="font-mono text-[9px] text-muted uppercase tracking-wider">{post.readingTime} MIN READ</span>
+                             <span className="font-mono text-[9px] text-muted uppercase tracking-wider">{post.readTime}</span>
                         </div>
                         
-                        <h3 className="display-md text-white group-hover:text-signal transition-colors mb-4 line-clamp-2">{post.title}</h3>
-                        <p className="font-body text-muted text-sm leading-relaxed line-clamp-3 mb-6">{post.excerpt}</p>
+                        <h3 className="font-display text-2xl text-white group-hover:text-signal transition-colors mb-4 line-clamp-2 uppercase tracking-tight">{post.title}</h3>
+                        <p className="font-body text-muted text-sm leading-relaxed line-clamp-3 mb-6 opacity-70">{post.excerpt}</p>
                         
                         <div className="mt-auto pt-4 border-t border-border flex justify-between items-center">
                             <span className="font-mono text-[10px] text-muted uppercase tracking-widest">{post.date}</span>

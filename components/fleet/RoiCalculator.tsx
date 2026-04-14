@@ -115,24 +115,24 @@ export default function RoiCalculator() {
             <div className="flex flex-col gap-6">
                 <div className="flex justify-between items-end border-b border-border/50 pb-4">
                     <span className="font-mono text-[11px] text-muted tracking-widest uppercase">FUEL SAVINGS ESTIMATE</span>
-                    <div ref={fuelSavingsRef} className="font-mono text-2xl text-signal font-bold">£0</div>
+                    <div ref={fuelSavingsRef} className="font-mono text-2xl text-signal font-bold">—</div>
                 </div>
                 <div className="flex justify-between items-end border-b border-border/50 pb-4">
                     <span className="font-mono text-[11px] text-muted tracking-widest uppercase">ADMIN TIME RECOVERED</span>
-                    <div ref={adminTimeRef} className="font-mono text-2xl text-signal font-bold">0 HOURS</div>
+                    <div ref={adminTimeRef} className="font-mono text-2xl text-signal font-bold">—</div>
                 </div>
                 <div className="flex justify-between items-end border-b border-border/50 pb-4">
                     <span className="font-mono text-[11px] text-muted tracking-widest uppercase">TYPICAL PAYBACK PERIOD</span>
-                    <div ref={paybackRef} className="font-mono text-2xl text-signal font-bold">0 WEEKS</div>
+                    <div ref={paybackRef} className="font-mono text-2xl text-signal font-bold">—</div>
                 </div>
                 <div className="flex justify-between items-end border-b border-border/50 pb-4">
                     <span className="font-mono text-[11px] text-muted tracking-widest uppercase">COST WITH TRAVIO</span>
-                    <div ref={monthlyCostRef} className="font-mono text-2xl text-signal font-bold">£0</div>
+                    <div ref={monthlyCostRef} className="font-mono text-2xl text-signal font-bold">—</div>
                 </div>
                 
                 <div className="mt-4 pt-6 bg-signal/5 p-6 rounded-xl border border-signal/20">
                     <div className="font-mono text-xs text-muted mb-2 text-center uppercase tracking-widest">ESTIMATED ANNUAL SAVINGS</div>
-                    <div ref={annualSavingRef} className="font-display text-5xl lg:text-6xl text-center font-bold text-white tracking-tight">£0</div>
+                    <div ref={annualSavingRef} className="font-display text-5xl lg:text-6xl text-center font-bold text-white tracking-tight">—</div>
                 </div>
 
                 <div className="mt-4">

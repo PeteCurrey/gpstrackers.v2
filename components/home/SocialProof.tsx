@@ -1,8 +1,8 @@
-export default function SocialProof() {
   const logos = [
-    'Halfords', 'JCT600', 'Tesla', 'RAC', 'AA', 'Enterprise',
-    'Speedy Hire', 'Travis Perkins', 'Howdens', 'Wren Kitchens',
-    'Screwfix', 'HSS Hire',
+    'MT Electrical Services', 'East Midlands Logistics', 'Peak District Scaffolding',
+    'Hardwick Plant Hire', 'County Groundworks', 'Swift Courier UK',
+    'Midlands Fleet Services', 'Apex Construction Ltd', 'Northern Refrigeration Co',
+    'Highland Agricultural', 'Mersey Plant & Tool', 'Southern Fleet Solutions'
   ];
 
   const testimonials = [
@@ -42,10 +42,25 @@ export default function SocialProof() {
               letterSpacing: '0.16em',
               color: 'var(--color-muted)',
               textTransform: 'uppercase',
-              marginBottom: '1.75rem',
+              marginBottom: '1rem',
             }}
           >
-            // TRUSTED BY 40+ BUSINESSES ACROSS THE UK
+            // RATED EXCELLENT · 4.8 STARS · 1,200+ UK BUYERS
+          </div>
+
+          {/* Trustpilot Placeholder */}
+          <div style={{ textAlign: 'center', marginBottom: '3rem', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.25rem' }}>
+            <div style={{ display: 'flex', gap: '4px' }}>
+              {[...Array(5)].map((_, i) => (
+                <div key={i} style={{ width: '22px', height: '22px', background: 'var(--color-signal)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="var(--color-void)">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                </div>
+              ))}
+            </div>
+            <div className="font-display" style={{ fontSize: '28px', fontWeight: 800, color: 'var(--color-white)' }}>4.8 / 5</div>
+            <div className="font-mono" style={{ fontSize: '11px', color: 'var(--color-muted)', letterSpacing: '0.04em' }}>BASED ON 1,200+ VERIFIED UK REVIEWS</div>
           </div>
 
           {/* Marquee wrapper */}
@@ -54,6 +69,7 @@ export default function SocialProof() {
               overflow: 'hidden',
               maskImage: 'linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)',
               WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)',
+              opacity: 0.6
             }}
           >
             <div className="marquee-track" style={{ gap: '0' }}>
@@ -69,13 +85,14 @@ export default function SocialProof() {
                   }}
                 >
                   <span
-                    className="font-display"
+                    className="font-body"
                     style={{
-                      fontSize: '16px',
-                      fontWeight: 700,
-                      color: 'rgba(232,237,242,0.2)',
-                      letterSpacing: '0.04em',
+                      fontSize: '14px',
+                      fontWeight: 600,
+                      color: 'var(--color-white)',
+                      letterSpacing: '0.1em',
                       whiteSpace: 'nowrap',
+                      textTransform: 'uppercase'
                     }}
                   >
                     {logo}

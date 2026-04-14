@@ -2,20 +2,11 @@
 import { useState, useMemo } from 'react';
 import Link from 'next/link';
 
-type Category = 'all' | 'vehicle' | 'fleet' | 'insurance' | 'asset' | 'caravan' | 'personal';
+import { products, Product } from '@/lib/data/products';
+
+type Category = 'all' | 'vehicle' | 'fleet' | 'insurance' | 'asset' | 'caravan' | 'plant';
 type PriceRange = 'all' | 'under100' | '100to300' | 'over300';
 type InstallType = 'all' | 'self' | 'professional' | 'magnetic';
-
-const allProducts = [
-  { id: 'travio-fs100', name: 'Travio FS100', slug: 'travio-fs100', category: 'fleet', tagline: 'The professional fleet standard', price: 45, compareAtPrice: 65, subscriptionAnnual: 59, installType: 'self', thatcham: null },
-  { id: 'travio-fs003', name: 'Travio FS003', slug: 'travio-fs003', category: 'vehicle', tagline: 'OBD plug & play — live in 60 seconds', price: 105, subscriptionAnnual: 59, installType: 'self', thatcham: null },
-  { id: 'travio-llb', name: 'Travio LLB', slug: 'travio-llb', category: 'asset', tagline: '40-day battery, magnetic mount', price: 150, subscriptionAnnual: 30, installType: 'magnetic', thatcham: null },
-  { id: 'travio-at1', name: 'Travio AT1', slug: 'travio-at1', category: 'asset', tagline: '3-year battery — truly covert', price: 105, subscriptionAnnual: 30, installType: 'magnetic', thatcham: null },
-  { id: 'travio-s7', name: 'Travio S7 Insurance', slug: 'travio-s7', category: 'insurance', tagline: 'Thatcham S7 — professionally installed', price: 189, compareAtPrice: 329, subscriptionAnnual: 59, installType: 'professional', thatcham: 'S7' },
-  { id: 'travio-s5', name: 'Travio S5', slug: 'travio-s5', category: 'insurance', tagline: 'Thatcham S5 with ADR fobs', price: 349, compareAtPrice: 449, subscriptionAnnual: 59, installType: 'professional', thatcham: 'S5' },
-  { id: 'travio-s5plus', name: 'Travio S5+', slug: 'travio-s5plus', category: 'insurance', tagline: 'S5 with remote immobilisation', price: 549, compareAtPrice: 599, subscriptionAnnual: 59, installType: 'professional', thatcham: 'S5' },
-  { id: 'caravan-shield-ct1', name: 'Caravan Shield CT1', slug: 'caravan-shield-ct1', category: 'caravan', tagline: '4-year battery, concealed installation', price: 105, subscriptionAnnual: 30, installType: 'professional', thatcham: null },
-];
 
 const categoryLabels: Record<Category, string> = {
   all: 'All Trackers',
@@ -23,8 +14,8 @@ const categoryLabels: Record<Category, string> = {
   fleet: 'Fleet',
   insurance: 'Insurance',
   asset: 'Asset',
-  caravan: 'Caravan & Motorhome',
-  personal: 'Personal & Pet',
+  caravan: 'Caravan',
+  plant: 'Plant & Site',
 };
 
 function SignalBars({ dim = false }: { dim?: boolean }) {
@@ -45,8 +36,12 @@ export default function ShopPage() {
   const [sort, setSort] = useState<'popular' | 'price-asc' | 'price-desc'>('popular');
 
   const filtered = useMemo(() => {
-    let p = [...allProducts];
-    if (category !== 'all') p = p.filter((x) => x.category === category);
+    let p = [...products];
+    if (category !== 'all') {
+      p = p.filter((x) => 
+        Array.isArray(x.category) ? x.category.includes(category) : x.category === category
+      );
+    }
     if (priceRange === 'under100') p = p.filter((x) => x.price < 100);
     if (priceRange === '100to300') p = p.filter((x) => x.price >= 100 && x.price <= 300);
     if (priceRange === 'over300') p = p.filter((x) => x.price > 300);
@@ -163,22 +158,29 @@ export default function ShopPage() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '1.25rem' }}>
             {filtered.map((p) => (
               <div key={p.id} className="glass-card card-signal-top" style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1rem' }}>
-                  <SignalBars />
-                  {p.thatcham && (
-                    <span className="font-mono" style={{ fontSize: '9px', letterSpacing: '0.1em', color: 'var(--color-alert)', border: '1px solid rgba(245,158,11,0.3)', borderRadius: '3px', padding: '2px 6px' }}>
-                      THATCHAM {p.thatcham}
-                    </span>
-                  )}
-                </div>
+                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1rem' }}>
+                   <SignalBars />
+                   <div className="flex flex-col items-end gap-2">
+                     {p.thatcham && (
+                        <span className="font-mono text-[9px] letter-spacing-[0.1em] text-alert border border-alert/30 rounded px-2 py-0.5 uppercase font-bold">
+                          Thatcham {p.thatcham}
+                        </span>
+                     )}
+                     {p.badge && (
+                        <span className="font-mono text-[9px] letter-spacing-[0.1em] bg-signal text-void rounded px-2 py-0.5 uppercase font-bold shadow-[0_0_10px_rgba(14,165,233,0.3)]">
+                          {p.badge}
+                        </span>
+                     )}
+                   </div>
+                 </div>
 
-                <span className="font-mono" style={{ fontSize: '10px', letterSpacing: '0.1em', color: 'var(--color-signal)', border: '1px solid rgba(14,165,233,0.25)', borderRadius: '4px', padding: '2px 8px', alignSelf: 'flex-start', marginBottom: '0.75rem', textTransform: 'uppercase' }}>
-                  {p.category}
-                </span>
+                 <span className="font-mono text-[9px] text-signal border border-signal/20 rounded-full px-3 py-1 align-self-start mb-4 uppercase tracking-[0.1em] bg-signal/5">
+                   {Array.isArray(p.category) ? p.category.join(' + ') : p.category}
+                 </span>
 
-                <div className="font-display" style={{ fontSize: '20px', fontWeight: 700, color: 'var(--color-white)', marginBottom: '0.25rem' }}>
-                  {p.name}
-                </div>
+                 <div className="font-display text-xl font-bold text-white mb-2 uppercase tracking-tight">
+                   {p.name}
+                 </div>
                 <p style={{ fontFamily: 'var(--font-body)', fontWeight: 300, fontSize: '13px', color: 'var(--color-muted)', marginBottom: '1.25rem', flex: 1 }}>
                   {p.tagline}
                 </p>

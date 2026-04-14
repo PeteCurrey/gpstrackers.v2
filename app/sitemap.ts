@@ -1,4 +1,8 @@
 import { MetadataRoute } from 'next';
+import { categories } from '@/lib/data/categories';
+import { products } from '@/lib/data/products';
+import { caseStudies } from '@/lib/data/caseStudies';
+import { blogPosts } from '@/lib/data/blog';
 
 const BASE_URL = 'https://travio.co.uk';
 
@@ -12,6 +16,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/find-my-tracker',
     '/case-studies',
     '/blog',
+    '/about',
     '/cart',
   ].map((route) => ({
     url: `${BASE_URL}${route}`,
@@ -20,44 +25,39 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: route === '' ? 1 : 0.8,
   }));
 
-  // Dynamic slugs (Normally fetched from Sanity)
-  const productSlugs = [
-    'travio-fs100', 'travio-at1', 'travio-s7', 'travio-s5', 'travio-s5plus', 
-    'travio-fs003', 'travio-llb', 'caravan-shield-ct1'
-  ];
-  
-  const blogSlugs = [
-    'obd-vs-hardwired-trackers', 'thatcham-s5-vs-s7-guide', 
-    'driver-behaviour-scoring-case-study', 'vehicle-theft-trends-2026',
-    'hidden-cost-of-paper-logs', 'concealment-locations-guide'
-  ];
-
-  const caseStudySlugs = [
-    'mt-electrical-recovery', 'east-midlands-logistics-roi',
-    'peak-equestrian-prevention', 'jct600-visibility',
-    'build-it-construction-tracking', 'sheffield-council-optimisation'
-  ];
-
-  const productRoutes = productSlugs.map((slug) => ({
-    url: `${BASE_URL}/shop/${slug}`,
+  const productRoutes = products.map((p) => ({
+    url: `${BASE_URL}/shop/${p.slug}`,
     lastModified: new Date(),
     changeFrequency: 'weekly' as const,
     priority: 0.7,
   }));
 
-  const blogRoutes = blogSlugs.map((slug) => ({
-    url: `${BASE_URL}/blog/${slug}`,
+  const categoryRoutes = Object.keys(categories).map((slug) => ({
+    url: `${BASE_URL}/trackers/${slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'weekly' as const,
+    priority: 0.8,
+  }));
+
+  const blogRoutes = blogPosts.map((post) => ({
+    url: `${BASE_URL}/blog/${post.slug}`,
     lastModified: new Date(),
     changeFrequency: 'monthly' as const,
     priority: 0.6,
   }));
 
-  const caseStudyRoutes = caseStudySlugs.map((slug) => ({
-    url: `${BASE_URL}/case-studies/${slug}`,
+  const caseStudyRoutes = caseStudies.map((cs) => ({
+    url: `${BASE_URL}/case-studies/${cs.slug}`,
     lastModified: new Date(),
     changeFrequency: 'monthly' as const,
     priority: 0.6,
   }));
 
-  return [...routes, ...productRoutes, ...blogRoutes, ...caseStudyRoutes];
+  return [
+    ...routes, 
+    ...productRoutes, 
+    ...categoryRoutes, 
+    ...blogRoutes, 
+    ...caseStudyRoutes
+  ];
 }

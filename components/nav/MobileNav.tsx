@@ -16,7 +16,7 @@ const navSections = [
       { label: 'Insurance Approved', href: '/trackers/insurance-approved' },
       { label: 'Asset Trackers', href: '/trackers/asset-trackers' },
       { label: 'Caravan & Motorhome', href: '/trackers/caravan-motorhome' },
-      { label: 'Personal & Pet', href: '/trackers/personal-pet' },
+      { label: 'Plant & Machinery', href: '/trackers/plant-machinery' },
     ],
   },
   {

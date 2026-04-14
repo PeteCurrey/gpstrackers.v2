@@ -82,7 +82,7 @@ export default function StatsStrip() {
                 style={{ fontSize: '2.5rem', fontWeight: 700, color: 'var(--color-signal)', display: 'block', lineHeight: 1 }}
               >
                 <span ref={(el) => { numRefs.current[i] = el; }}>
-                  {stat.prefix || ''}{stat.value === 14 ? stat.value : 0}{stat.suffix}
+                  {stat.prefix || ''}{stat.value.toLocaleString('en-GB')}{stat.suffix}
                 </span>
               </div>
               <div
