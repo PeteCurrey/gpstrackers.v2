@@ -9,6 +9,7 @@ import HowItWorks from '@/components/home/HowItWorks';
 import SocialProof from '@/components/home/SocialProof';
 import BlogPreview from '@/components/home/BlogPreview';
 import CtaStrip from '@/components/home/CtaStrip';
+import PressLogos from '@/components/home/PressLogos';
 
 export const metadata: Metadata = {
   title: 'Travio GPS Trackers | Track Everything. Know Everything.',
@@ -59,6 +60,7 @@ export default function HomePage() {
       <ProductCategories />
       <PlatformShowcase />
       <FeaturedProducts />
+      <PressLogos />
       <BeltBraces />
       <HowItWorks />
       <SocialProof />

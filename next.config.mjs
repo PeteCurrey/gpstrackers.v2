@@ -1,21 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    formats: ['image/avif', 'image/webp'],
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'cdn.sanity.io',
-      },
-      {
-        protocol: 'https',
-        hostname: '*.supabase.co',
-      },
-    ],
+    unoptimized: true,
   },
   experimental: {
-    optimizeCss: true,
+    cpus: 1,
   },
+  staticPageGenerationTimeout: 1000,
 };
 
 export default nextConfig;

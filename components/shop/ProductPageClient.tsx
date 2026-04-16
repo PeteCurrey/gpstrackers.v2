@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useCartStore } from '@/lib/cart/cartStore';
@@ -26,7 +26,30 @@ export default function ProductPageClient({ product }: { product: Product }) {
   const [quantity, setQuantity] = useState(1);
   const [includeSubscription, setIncludeSubscription] = useState(true);
   const [activeTab, setActiveTab] = useState<'features' | 'subscription' | 'installation' | 'faq'>('features');
+  const [countdown, setCountdown] = useState({ hours: 0, minutes: 0 });
   const addItem = useCartStore((state) => state.addItem);
+
+  useEffect(() => {
+    const updateCountdown = () => {
+      const now = new Date();
+      // Cutoff at 4pm (16:00)
+      const cutoff = new Date();
+      cutoff.setHours(16, 0, 0, 0);
+
+      if (now > cutoff) {
+        cutoff.setDate(cutoff.getDate() + 1);
+      }
+
+      const diff = cutoff.getTime() - now.getTime();
+      const h = Math.floor(diff / (1000 * 60 * 60));
+      const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      setCountdown({ hours: h, minutes: m });
+    };
+
+    updateCountdown();
+    const timer = setInterval(updateCountdown, 60000);
+    return () => clearInterval(timer);
+  }, []);
 
   const handleAddToCart = () => {
     addItem({
@@ -161,6 +184,17 @@ export default function ProductPageClient({ product }: { product: Product }) {
               </div>
             </div>
 
+            {/* Urgency & Scarcity */}
+            <div className="mb-8 flex flex-col gap-3">
+                <div className="flex items-center gap-2 text-amber-500 font-mono text-[10px] uppercase tracking-widest font-bold">
+                    <span className="w-1.5 h-1.5 bg-amber-500 rounded-full animate-pulse" />
+                    Order in next {countdown.hours}h {countdown.minutes}m for Next Day Delivery
+                </div>
+                <div className="text-muted font-mono text-[9px] uppercase tracking-widest">
+                    🔥 ONLY 4 UNITS REMAINING AT THIS PRICE
+                </div>
+            </div>
+
             <div className="flex flex-col sm:flex-row gap-4 mb-8">
               <div className="flex items-center h-14 bg-surface-2 border border-border rounded overflow-hidden">
                 <button 
@@ -198,6 +232,26 @@ export default function ProductPageClient({ product }: { product: Product }) {
             </div>
           </div>
         </div>
+
+        {/* Cross-sell Section */}
+        {product.id !== 'belt-braces-bundle' && (
+            <div className="mb-20 animate-fade-in" style={{ animationDelay: '0.4s' }}>
+                <div className="glass-card border-signal/20 bg-signal/5 p-8 lg:p-10 flex flex-col md:flex-row items-center justify-between gap-8 ring-1 ring-signal/30">
+                    <div>
+                        <div className="mono-label text-signal mb-2 uppercase tracking-[0.2em] opacity-80">// FREQUENTLY BOUGHT TOGETHER</div>
+                        <h3 className="font-display text-2xl font-black text-white uppercase mb-2">Upgrade to Belt & Braces Protection</h3>
+                        <p className="font-body text-sm text-muted max-w-lg">Protect your asset with two independent trackers. If thieves find the primary, they never look for the second.</p>
+                    </div>
+                    <div className="flex items-center gap-6">
+                        <div className="text-right">
+                            <div className="font-display text-2xl font-bold text-white leading-none mb-1">SAVE 35%</div>
+                            <div className="font-mono text-[10px] text-signal uppercase tracking-widest">ON BUNDLE UPGRADE</div>
+                        </div>
+                        <Link href="/shop/belt-braces-bundle" className="btn-signal px-8 h-12 uppercase text-[10px] tracking-widest">Upgrade Now →</Link>
+                    </div>
+                </div>
+            </div>
+        )}
 
         {/* Spec Table */}
         <div className="mb-32">

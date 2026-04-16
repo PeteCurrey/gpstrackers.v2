@@ -3,6 +3,7 @@ import { useEffect, useRef } from 'react';
 import Link from 'next/link';
 import gsap from 'gsap';
 import CinematicMap from '../ui/CinematicMap';
+import VehicleLookup from './VehicleLookup';
 
 export default function Hero() {
   const labelRef = useRef<HTMLDivElement>(null);
@@ -196,6 +197,8 @@ export default function Hero() {
                   Find My Tracker →
                 </Link>
               </div>
+
+              <VehicleLookup />
             </div>
           </div>
 

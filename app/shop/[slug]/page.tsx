@@ -229,10 +229,20 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const p = products[slug];
   if (!p) return {};
+  
   return {
-    title: `${p.name} | ${p.category} GPS Tracker`,
-    description: `${p.tagline}. From £${p.price}${p.subscriptionAnnual ? ` + £${p.subscriptionAnnual}/year subscription` : ''}. Free 14-day trial.`,
-    openGraph: { title: p.name, description: p.tagline },
+    title: `${p.name} | ${p.category} GPS Tracker | Buy Online | Travio`,
+    description: `${p.tagline}. Professional grade GPS tracking for only £${p.price} + £${p.subscriptionAnnual}/year. UK next-day delivery available.`,
+    openGraph: { 
+      title: `${p.name} - Professional ${p.category} GPS Tracking`,
+      description: p.tagline,
+      type: 'website'
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: p.name,
+      description: p.tagline
+    }
   };
 }
 

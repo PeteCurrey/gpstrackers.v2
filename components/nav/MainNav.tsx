@@ -19,6 +19,23 @@ const fleetLinks = [
   { label: 'Case Studies', href: '/case-studies', desc: 'Real-world results' },
 ];
 
+const industriesLinks = [
+  { label: 'Construction', href: '/industries/construction', desc: 'Plant & equipment protection' },
+  { label: 'Logistics & Courier', href: '/industries/logistics', desc: 'Fleet behavior & tracking' },
+  { label: 'Scaffolding', href: '/industries/scaffolding', desc: 'Trailer & equipment security' },
+  { label: 'Agriculture', href: '/industries/agriculture', desc: 'Remote asset protection' },
+  { label: 'Plant Hire', href: '/industries/plant-hire', desc: 'Asset visibility & history' },
+  { label: 'Tradespeople', href: '/industries/tradesperson', desc: 'Van & tool protection' },
+];
+
+const moreLinks = [
+  { label: 'Theft Risk Checker', href: '/tools/theft-risk', desc: 'AI theft risk assessment' },
+  { label: 'AI Fleet Advisor', href: '/tools/fleet-advisor', desc: 'Personalized fleet setup' },
+  { label: 'Insurance Calculator', href: '/tools/insurance-savings', desc: 'Find your potential ROI' },
+  { label: 'Trade Portal', href: '/trade', desc: 'Wholesale & installer programme' },
+  { label: 'Pricing', href: '/pricing', desc: 'Full transparent price list' },
+];
+
 export default function MainNav() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -149,21 +166,22 @@ export default function MainNav() {
                     zIndex: 100,
                   }}
                 >
-                  {trackerLinks.map((link) => (
-                    <Link
-                      key={link.href}
-                      href={link.href}
-                      onClick={() => setActiveDropdown(null)}
-                      className="nav-dropdown-item"
-                    >
-                      <div className="nav-dropdown-title">
-                        {link.label}
-                      </div>
-                      <div className="nav-dropdown-desc">
-                        {link.desc}
-                      </div>
-                    </Link>
-                  ))}
+                    {trackerLinks.map((link, idx) => (
+                      <Link
+                        key={link.href}
+                        href={link.href}
+                        onClick={() => setActiveDropdown(null)}
+                        className="nav-dropdown-item animate-stagger"
+                        style={{ animationDelay: `${idx * 0.05}s` }}
+                      >
+                        <div className="nav-dropdown-title">
+                          {link.label}
+                        </div>
+                        <div className="nav-dropdown-desc">
+                          {link.desc}
+                        </div>
+                      </Link>
+                    ))}
                 </div>
               )}
             </div>
@@ -215,7 +233,154 @@ export default function MainNav() {
                     zIndex: 100,
                   }}
                 >
-                  {fleetLinks.map((link) => (
+                    {fleetLinks.map((link, idx) => (
+                      <Link
+                        key={link.href}
+                        href={link.href}
+                        onClick={() => setActiveDropdown(null)}
+                        className="nav-dropdown-item animate-stagger"
+                        style={{ animationDelay: `${idx * 0.05}s` }}
+                      >
+                        <div className="nav-dropdown-title">
+                          {link.label}
+                        </div>
+                        <div className="nav-dropdown-desc">
+                          {link.desc}
+                        </div>
+                      </Link>
+                    ))}
+                </div>
+              )}
+            </div>
+
+            {/* Industries dropdown */}
+            <div
+              style={{ position: 'relative' }}
+              onMouseEnter={() => handleMouseEnter('industries')}
+              onMouseLeave={handleMouseLeave}
+            >
+              <button
+                style={{
+                  background: 'none',
+                  border: 'none',
+                  color: activeDropdown === 'industries' ? 'var(--color-signal)' : 'var(--color-text)',
+                  fontFamily: 'var(--font-body)',
+                  fontSize: '14px',
+                  cursor: 'pointer',
+                  padding: '0.5rem 0.75rem',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.3rem',
+                  transition: 'color 0.2s',
+                }}
+              >
+                Industries
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                  <path d="M2 4l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </button>
+              {activeDropdown === 'industries' && (
+                <div
+                  style={{
+                    position: 'absolute',
+                    top: '100%',
+                    left: '50%',
+                    transform: 'translateX(-50%)',
+                    marginTop: '8px',
+                    background: 'var(--color-surface-2)',
+                    border: '1px solid var(--color-border)',
+                    borderTop: '2px solid var(--color-signal)',
+                    borderRadius: '8px',
+                    padding: '0.75rem',
+                    minWidth: '560px',
+                    display: 'grid',
+                    gridTemplateColumns: '1fr 1fr',
+                    gap: '0.25rem',
+                    boxShadow: '0 20px 60px rgba(0,0,0,0.5)',
+                    zIndex: 100,
+                  }}
+                >
+                    {industriesLinks.map((link, idx) => (
+                      <Link
+                        key={link.href}
+                        href={link.href}
+                        onClick={() => setActiveDropdown(null)}
+                        className="nav-dropdown-item animate-stagger"
+                        style={{ animationDelay: `${idx * 0.05}s` }}
+                      >
+                        <div className="nav-dropdown-title">
+                          {link.label}
+                        </div>
+                        <div className="nav-dropdown-desc">
+                          {link.desc}
+                        </div>
+                      </Link>
+                    ))}
+                </div>
+              )}
+            </div>
+
+            {[
+              { label: 'Platform', href: '/platform' },
+              { label: 'Shop', href: '/shop' },
+              { label: 'Pricing', href: '/pricing' },
+            ].map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="nav-link"
+              >
+                {link.label}
+              </Link>
+            ))}
+
+            {/* More dropdown */}
+            <div
+              style={{ position: 'relative' }}
+              onMouseEnter={() => handleMouseEnter('more')}
+              onMouseLeave={handleMouseLeave}
+            >
+              <button
+                style={{
+                  background: 'none',
+                  border: 'none',
+                  color: activeDropdown === 'more' ? 'var(--color-signal)' : 'var(--color-text)',
+                  fontFamily: 'var(--font-body)',
+                  fontSize: '14px',
+                  cursor: 'pointer',
+                  padding: '0.5rem 0.75rem',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.3rem',
+                  transition: 'color 0.2s',
+                }}
+              >
+                More
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                  <path d="M2 4l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </button>
+              {activeDropdown === 'more' && (
+                <div
+                  style={{
+                    position: 'absolute',
+                    top: '100%',
+                    right: 0,
+                    marginTop: '8px',
+                    background: 'var(--color-surface-2)',
+                    border: '1px solid var(--color-border)',
+                    borderTop: '2px solid var(--color-signal)',
+                    borderRadius: '8px',
+                    padding: '0.75rem',
+                    minWidth: '280px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '0.25rem',
+                    boxShadow: '0 20px 60px rgba(0,0,0,0.5)',
+                    zIndex: 100,
+                  }}
+                >
+                  {moreLinks.map((link) => (
                     <Link
                       key={link.href}
                       href={link.href}
@@ -233,20 +398,6 @@ export default function MainNav() {
                 </div>
               )}
             </div>
-
-            {[
-              { label: 'Platform', href: '/platform' },
-              { label: 'How It Works', href: '/how-it-works' },
-              { label: 'Shop', href: '/shop' },
-            ].map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="nav-link"
-              >
-                {link.label}
-              </Link>
-            ))}
           </div>
 
           {/* Right actions */}

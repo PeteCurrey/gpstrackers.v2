@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 
@@ -12,6 +12,29 @@ const stats = [
   { value: 14, suffix: ' days', label: 'Free trial — no credit card required' },
   { value: 4.92, suffix: '/mo', prefix: '£', label: 'Average tracker subscription cost', decimals: 2 },
 ];
+
+function LiveCounter() {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    const calculateCount = () => {
+      const now = new Date();
+      const startOfDay = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+      const secondsSinceMidnight = (now.getTime() - startOfDay.getTime()) / 1000;
+      
+      // 11273 / 365 / 24 / 60 / 60 = ~0.000357 thefts per second
+      // Or 1 every 46 minutes (2760 seconds)
+      const currentCount = Math.floor(secondsSinceMidnight / 2760);
+      setCount(currentCount);
+    };
+
+    calculateCount();
+    const interval = setInterval(calculateCount, 30000); // Check every 30s
+    return () => clearInterval(interval);
+  }, []);
+
+  return <>{count}</>;
+}
 
 export default function StatsStrip() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -57,10 +80,23 @@ export default function StatsStrip() {
         background: 'var(--color-surface)',
         borderBottom: '1px solid var(--color-border)',
         borderTop: '1px solid var(--color-border)',
-        padding: '3rem 0',
+        padding: '4rem 0',
       }}
     >
       <div className="container">
+        {/* Live Theft Counter */}
+        <div className="max-w-2xl mx-auto mb-16 text-center animate-fade-in">
+            <div className="mono-label text-signal mb-4 uppercase tracking-[0.2em] opacity-60">
+                // VEHICLES STOLEN IN THE UK TODAY (ESTIMATED)
+            </div>
+            <div className="font-display text-5xl md:text-7xl font-black text-white mb-4 tabular-nums">
+                <LiveCounter />
+            </div>
+            <p className="font-body text-xs text-muted max-w-sm mx-auto leading-relaxed">
+                Based on 11,273 annual vehicle thefts — approximately 31 per day, 1 every 46 minutes.
+            </p>
+        </div>
+
         <div
           style={{
             display: 'grid',

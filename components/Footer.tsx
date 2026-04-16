@@ -19,20 +19,29 @@ const platformLinks = [
 ];
 
 const resourceLinks = [
-  { label: 'Find My Tracker', href: '/find-my-tracker' },
+  { label: 'Theft Risk Checker', href: '/tools/theft-risk' },
+  { label: 'AI Fleet Advisor', href: '/tools/fleet-advisor' },
+  { label: 'Insurance Calculator', href: '/tools/insurance-savings' },
   { label: 'Blog', href: '/blog' },
   { label: 'Case Studies', href: '/case-studies' },
-  { label: 'Fleet ROI Calculator', href: '/fleet#roi' },
-  { label: 'Installation Guide', href: '/how-it-works#installation' },
   { label: 'FAQ', href: '/how-it-works#faq' },
+];
+
+const industriesLinks = [
+  { label: 'Construction', href: '/industries/construction' },
+  { label: 'Logistics', href: '/industries/logistics' },
+  { label: 'Scaffolding', href: '/industries/scaffolding' },
+  { label: 'Agriculture', href: '/industries/agriculture' },
+  { label: 'Tradespeople', href: '/industries/tradesperson' },
+  { label: 'Plant Hire', href: '/industries/plant-hire' },
 ];
 
 const companyLinks = [
   { label: 'About Travio', href: '/about' },
-  { label: 'Contact', href: '/contact' },
+  { label: 'Partner Portal', href: '/trade' },
+  { label: 'Pricing', href: '/pricing' },
   { label: 'Privacy Policy', href: '/privacy' },
   { label: 'Terms of Use', href: '/terms' },
-  { label: 'Cookie Policy', href: '/cookies' },
 ];
 
 const footerLinkStyle = {
@@ -175,10 +184,10 @@ export default function Footer() {
             {trackerLinks.map((l) => <FooterLink key={l.href} {...l} />)}
           </div>
 
-          {/* Col 3: Platform */}
+          {/* Col 3: Industries */}
           <div>
-            <FooterHeading>Platform</FooterHeading>
-            {platformLinks.map((l) => <FooterLink key={l.href} {...l} />)}
+            <FooterHeading>Industries</FooterHeading>
+            {industriesLinks.map((l) => <FooterLink key={l.href} {...l} />)}
           </div>
 
           {/* Col 4: Resources */}
